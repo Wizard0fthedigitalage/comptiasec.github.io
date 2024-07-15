@@ -17,6 +17,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #quiz-container {
@@ -33,10 +34,16 @@ header {
 
 button {
     padding: 10px 20px;
+    font-size: 1em;
 }
 
 #timer {
     font-size: 1.5em;
+    background-color: white;
+    color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #result {
