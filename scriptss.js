@@ -1,3 +1,7 @@
+const passingScore = 70; // Define passing score percentage
+
+let currentQuestionIndex = 0;
+let score = 0;
 let timer;
 let timeLeft = 60 * 60; // 60 minutes in seconds
 
@@ -54,7 +58,12 @@ function submitQuiz() {
     document.getElementById('next-button').style.display = 'none';
     document.getElementById('submit-button').style.display = 'none';
     document.getElementById('result').style.display = 'block';
-    document.getElementById('result').textContent = `You scored ${score} out of ${questions.length}`;
+
+    const percentageScore = (score / questions.length) * 100;
+    const resultMessage = percentageScore >= passingScore ? 'Congratulations, you passed!' : 'Sorry, you failed.';
+    document.getElementById('result').innerHTML = `
+        You scored ${score} out of ${questions.length} (${percentageScore.toFixed(2)}%). ${resultMessage}
+    `;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
