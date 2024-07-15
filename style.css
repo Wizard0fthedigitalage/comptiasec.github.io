@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+#quiz-container {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+#timer {
+    font-size: 1.5em;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#result {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
