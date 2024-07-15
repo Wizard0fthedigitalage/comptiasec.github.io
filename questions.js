@@ -1,11 +1,13 @@
 const questions = [
     {
-        question: "What is the primary purpose of a firewall?",
-        options: ["To monitor network traffic", "To prevent unauthorized access", "To encrypt data", "To provide network redundancy"],
-        answer: "To prevent unauthorized access"
+        question: "What is the primary goal of information security?",
+        options: ["Confidentiality, Integrity, Availability", "Detecting Intrusions", "Logging Events", "System Maintenance"],
+        answer: "Confidentiality, Integrity, Availability"
     },
-    // Add 119 more questions here in the same format
+    {
+        question: "What does the acronym 'CIA' stand for in security?",
+        options: ["Confidentiality, Integrity, Availability", "Central Intelligence Agency", "Certified Information Auditor", "Cyber Intelligence Act"],
+        answer: "Confidentiality, Integrity, Availability"
+    }
+    // Add more questions as needed
 ];
-
-let currentQuestionIndex = 0;
-let score = 0;
