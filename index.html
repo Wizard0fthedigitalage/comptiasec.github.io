@@ -1,23 +1,91 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Security+ Practice Exam</title>
-    <link rel="stylesheet" href="styless.css">
-</head>
-<body>
+<html>
+  <head>
+    <title>Comptia Sec+ Emulation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  </head>
+
+  <body>
     <header>
-        <h1>CompTIA Security+ Practice Exam</h1>
-        <div id="timer">60:00</div>
+        <div class="header">
+            <!--left corner to view high score-->
+            <div>
+                <button class="button" id="score_check">View Highscores</button>
+            </div>
+            <!--right corner to set a timer-->
+            <div>
+                <p id="timer"> Time left: 60 s</p>
+            </div>
+        </div>
     </header>
-    <div id="quiz-container"></div>
-    <div class="button-container">
-        <button id="next-button">Next</button>
-        <button id="submit-button" style="display: none;">Submit</button>
-    </div>
-    <div id="result" style="display: none;"></div>
-    <script src="questions.js"></script>
-    <script src="scriptss.js"></script>
-</body>
+
+    <main>
+        <div>
+            <!--introduction section-->
+            <section class="intro_page" id="intro_page">
+                <div id="introduction">
+                    <h1>
+                        Welcome to Comptia Sec+ Simulation exam
+                    </h1>
+                    <p id="instruction">
+                        Try to answer the following questions within the time limit. Keep in mid that incorrect answers will penalize your score/time by ten seconds!
+                    </p>
+                    <button class="button" id="start_button">Start Quiz</button>
+                </div>
+            </section>
+
+            <!--questions section-->
+            <section class="question_page" id="question_page">
+                <div>
+                    <!--question body-->
+                    <div>
+                        <h2 id = "ask_question">Ask the question</h2>
+                        <ul>
+                            <li><button class ="choices button" id="answer_btn1" value="a">Answer1</button></li>
+                            <li><button class ="choices button" id="answer_btn2" value="b">Answer2</button></li>
+                            <li><button class ="choices button" id="answer_btn3" value="c">Answer3</button></li>
+                            <li><button class ="choices button" id="answer_btn4" value="d">Answer4</button></li>
+                        </ul>
+                    <div>
+
+                    <!--question check-->
+                    <div id="check_line">
+                        <p>Correct or Wrong</p>
+                    <!-- </div> -->
+                </div>
+            </section>
+
+            <!--final report section-->
+            <section class="submit_page" id="submit_page">
+                <div>
+                    <h2 id="finish">All Done!</h2>
+                    <p id = "final_score">Your final score is: </p>
+                    <p>Enter initials
+                        <input id="initial">
+                        <button class="button" id="submit_btn">Submit</button>
+                    </p>
+                </div>
+            </section>
+
+            <!--high score section-->
+            <section class="highscore_page" id ="highscore_page">
+                <div>
+                    <h2>High Scores</h2>
+                    <div id="score_record"><p>Your record</p></div><br><br>
+                    <div>
+                        <button class="button" id="back_btn">Go back</button>
+                        <button class="button" id="clear_btn">Clear Highscores</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>Made with 🤍 by GreyHat CyberSolutions India</p>
+    </footer>
+    <script src="assets/script/script.js"></script>
+  </body>
 </html>
