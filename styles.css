@@ -1,92 +1,68 @@
-* {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    box-sizing: border-box;
-}
-
-.header{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: center;
-    background-image: url("https://www.pngkey.com/maxpic/u2q8i1i1e6r5i1e6/");
-    background-repeat: no-repeat;
-    background-position:center; 
-    background-size: cover;
-  }
-
-main {
-    text-align: center;
-    justify-content: center;
-    flex: 1 0 auto;
-    margin-left:200px;
-    margin-right:200px;
-}
-footer {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-.question_page {
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-/*hide the bullet points from listings*/
-ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: baseline;
-    padding-left: 50px;
-   }
-
-li {
-    margin-bottom: 10px;
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
 }
 
-/*display only the intro page and hide the rest sections*/
-.question_page, .submit_page, .highscore_page, #check_line {
-    display:none;
+#timer {
+    font-size: 2rem;
 }
 
-.button{
-    background:white;
-    border-radius: 3px;
-    padding: 10px;
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    margin-bottom: 10px;
-  }
-  
-.button:hover{
-  
-    background-color:rgb(205, 245, 247);
-  
 }
-  
-@media only screen and (max-width: 960px) {
-    body {
-      background-image: url("https://giphy.com/stickers/CompTIA-it-information-technology-comptia-5Y1miInt9GuFr7OkY4");
-    }
-    main {
-        margin-left:50px;
-        margin-right:50px;
-    }
-  }
 
-@media only screen and (max-width: 520px) {
-    body {
-      background-image: url("https://r1.ilikewallpaper.net/ipad-wallpapers/download/1517/Vector-Cat-ipad-wallpaper-ilikewallpaper_com.jpg");
-      font-size: 130%;
-    }
-    main {
-        margin-left:12px;
-        margin-right:12px;
-    }
+button:hover {
+    background-color: #45a049;
+}
+
+#question_page, #submit_page, #highscore_page {
+    margin-top: 20px;
+}
+
+#question_page h2, #submit_page h2, #highscore_page h2 {
+    margin-bottom: 20px;
+}
+
+#check_line {
+    color: red;
+    font-weight: bold;
+}
+
+.choices button {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+}
+
+#score_record {
+    list-style-type: none;
+    padding: 0;
+}
+
+#score_record li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#score_record li:nth-child(odd) {
+    background: #efefef;
 }
