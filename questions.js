@@ -499,8 +499,7 @@ var questionSource = [
         choices: ["a. IPS", "b. IDS", "c. AV software", "d. anti-malware
         answer: "b"
 
-     },
-    {
+     }
 ];
      
 
