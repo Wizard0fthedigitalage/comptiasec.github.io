@@ -69,4 +69,6 @@ function submitQuiz() {
 document.addEventListener('DOMContentLoaded', () => {
     startTimer();
     loadQuestion(currentQuestionIndex);
+    document.getElementById('next-button').addEventListener('click', nextQuestion);
+    document.getElementById('submit-button').addEventListener('click', submitQuiz);
 });
