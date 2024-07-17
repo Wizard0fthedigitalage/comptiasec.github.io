@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Security+ Exam Simulator</title>
-    <link rel="stylesheet" href="styless.css">
+    <title>CompTIA Security+ Practice Exam</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>CompTIA Security+ Exam Simulator</h1>
+        <h1>CompTIA Security+ Practice Exam</h1>
         <div id="timer">60:00</div>
     </header>
-    <main>
-        <div id="quiz-container"></div>
-        <div class="button-container">
-            <button id="next-button" onclick="nextQuestion()">Next</button>
-            <button id="submit-button" onclick="submitQuiz()" style="display: none;">Submit</button>
-        </div>
-        <div id="result" style="display: none;"></div>
-    </main>
+    <div id="quiz-container"></div>
+    <div class="button-container">
+        <button id="next-button">Next</button>
+        <button id="submit-button" style="display: none;">Submit</button>
+    </div>
+    <div id="result" style="display: none;"></div>
     <script src="questions.js"></script>
-    <script src="scriptss.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
