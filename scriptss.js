@@ -10,7 +10,7 @@ function startTimer() {
   timer = setInterval(() => {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
-    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    timerElement.textContent = `<span class="math-inline">\{minutes\}\:</span>{seconds < 10 ? '0' : ''}${seconds}`;
     timeLeft--;
 
     if (timeLeft < 0) {
@@ -49,31 +49,4 @@ function nextQuestion() {
       document.getElementById('submit-button').style.display = 'block';
     }
   } else {
-    alert('Please select an answer before moving to the next question.');
-  }
-
-  // Update score display after checking answer
-  const currentScoreElement = document.getElementById('current-score');
-  currentScoreElement.textContent = `Score: ${score} / ${questions.length}`;
-}
-
-function submitQuiz() {
-  clearInterval(timer);
-  document.getElementById('quiz-container').style.display = 'none';
-  document.getElementById('next-button').style.display = 'none';
-  document.getElementById('submit-button').style.display = 'none';
-  document.getElementById('result').style.display = 'block';
-
-  const percentageScore = (score / questions.length) * 100;
-  const resultMessage = percentageScore >= passingScore ? 'Congratulations, you passed!' : 'Sorry, you failed.';
-  document.getElementById('result').innerHTML = `
-    You scored ${score} out of ${questions.length} (${percentageScore.toFixed(2)}%). ${resultMessage}
-  `;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  startTimer();
-  loadQuestion(currentQuestionIndex);
-  document.getElementById('next-button').addEventListener('click', nextQuestion);
-  document.getElementById('submit-button').addEventListener('click', submitQuiz);
-});
+    alert('Please select an answer)
