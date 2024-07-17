@@ -3,45 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Security+ Practice Exam</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CompTIA Sec+ Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #question_page, #scoreBoard {
+            display: none;
+        }
+        #timer {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .question, .choices {
+            margin: 20px 0;
+        }
+        .choices button {
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>CompTIA Security+ Practice Exam</h1>
-        <div id="timer">60:00</div>
-    </header>
     <div id="introduction">
+        <h1>Welcome to the CompTIA Sec+ Quiz!</h1>
         <button id="start_button">Start Quiz</button>
     </div>
-    <div id="intro_page">
-        <h2>Welcome to the CompTIA Security+ Practice Exam</h2>
-        <button id="start_button">Start Quiz</button>
-    </div>
-    <div id="question_page" style="display: none;">
-        <h2 id="ask_question"></h2>
+    <div id="question_page">
+        <div id="timer">Time left: 60:00</div>
+        <div id="ask_question" class="question"></div>
         <div class="choices">
-            <button id="answer_btn1" class="choices"></button>
-            <button id="answer_btn2" class="choices"></button>
-            <button id="answer_btn3" class="choices"></button>
-            <button id="answer_btn4" class="choices"></button>
+            <button id="answer_btn1" class="choice"></button>
+            <button id="answer_btn2" class="choice"></button>
+            <button id="answer_btn3" class="choice"></button>
+            <button id="answer_btn4" class="choice"></button>
         </div>
-        <div id="check_line" style="display: none;"></div>
+        <div id="check_line"></div>
     </div>
-    <div id="submit_page" style="display: none;">
-        <h2>Submit Your Score</h2>
-        <p id="final_score"></p>
-        <label for="initial">Enter your initials:</label>
-        <input type="text" id="initial">
-        <button id="submit_btn">Submit</button>
-    </div>
-    <div id="highscore_page" style="display: none;">
-        <h2>High Scores</h2>
-        <ol id="score_record"></ol>
+    <div id="scoreBoard">
+        <h2>Quiz Completed!</h2>
+        <div id="final_score"></div>
+        <input type="text" id="initial" placeholder="Enter your initials">
+        <button id="submit_btn">Submit Score</button>
+        <ul id="score_record"></ul>
+        <button id="score_check">Check High Scores</button>
         <button id="back_btn">Go Back</button>
-        <button id="clear_btn">Clear High Scores</button>
+        <button id="clear_btn">Clear Scores</button>
     </div>
-    <script src="questions.js"></script>
-    <script src="scripts.js"></script>
+    <script>
+        var questionSource = [
+            { question: "What is the primary goal of information security?", choices: ["a. Detecting Intrusions", "b. Logging Events", "c. Confidentiality, Integrity, Availability", "d. System Maintenance"], answer: "c" },
+            { question: "Commonly used data types DO NOT include:", choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"], answer: "c" },
+            { question: "How do you create a function in JavaScript?", choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"], answer: "b" },
+            { question: "How do you call a function named myFunction?", choices: ["a. call myFunction()", "b. call function myFunction()", "c. myFunction()", "d. call myFunction"], answer: "c" },
+            { question: "To see if two variables are equal in an if / else statement you would use ____.", choices: ["a. =", "b. ==", "c. 'equals'", "d. !="], answer: "b" },
+            { question: "The first index of an array is ____.", choices: ["a. 0", "b. 1", "c. 8", "d. any"], answer: "a" },
+            { question: "How to write an IF statement in JavaScript?", choices: ["a. if i == 5 then", "b. if i = 5 then", "c. if(i == 5)", "d. if i = 5"], answer: "c" },
+            { question: "Which event occurs when the user clicks on an HTML element?", choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"], answer: "a" },
+            { question: "Which protocol is used to secure HTTP connections?", choices: ["a. HTTP", "b. HTTPS", "c. FTP", "d. SSH"], answer: "b" },
+            { question: "Which of the following is a common hashing algorithm?", choices: ["a. SHA-256", "b. AES", "c. RSA", "d. SSL"], answer: "a" },
+            { question: "What does the principle of least privilege ensure?", choices: ["a. Maximum access to all users", "b. Minimal access necessary for users to perform their jobs", "c. Full access to all system administrators", "d. No access to external networks"], answer: "b" },
+            // Add more questions here to make a total of 120 unique questions
+        ];
+
+        var welcome = document.querySelector("#introduction");
+        var startBtn = document.querySelector("#start_button");
+        var questionPage = document.querySelector("#question_page");
+        var askQuestion = document.querySelector("#ask_question");
+        var reactButtons = document.querySelectorAll(".choice");
+        var checkLine = document.querySelector("#check_line");
+        var scoreBoard = document.querySelector("#scoreBoard");
+        var finalScore = document.querySelector("#final_score");
+        var userInitial = document.querySelector("#initial");
+        var submitBtn = document.querySelector("#submit_btn");
+        var scoreRecord = document.querySelector("#score_record");
+        var scoreCheck = document.querySelector("#score_check");
+        var backBtn = document.querySelector("#back_btn");
+        var clearBtn = document.querySelector("#clear_btn");
+        var timeLeft = document.getElementById("timer");
+
+        var timerInterval;
+        var secondsLeft = 3600; // 60 minutes
+        var questionNumber = 0;
+        var totalScore = 0;
+
+        function countdown() {
+            timerInterval = setInterval(function () {
+                secondsLeft--;
+                var minutes = Math.floor(secondsLeft / 60);
+                var seconds = secondsLeft % 60;
+                timeLeft.textContent = "Time left: " + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+                if (secondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timeLeft.textContent = "Time is up!";
+                    finish.textContent = "Time is up!";
+                    gameOver();
+                }
+            }, 1000);
+        }
+
+        function startQuiz() {
+            welcome.style.display = "none";
+            questionPage.style.display = "block";
+            questionNumber = 0;
+            countdown();
+            showQuestion(questionNumber);
+        }
+
+        function showQuestion(n) {
+            askQuestion.textContent = questionSource[n].question;
+            reactButtons.forEach((btn, index) => {
+                btn.textContent = questionSource[n].choices[index];
+                btn.value = questionSource[n].choices[index].charAt(0); // assuming choices are like "a. ...", "b. ..."
+            });
+        }
+
+        function checkAnswer(event) {
+            event.preventDefault();
+            checkLine.style.display = "block";
+            setTimeout(function () {
+                checkLine.style.display = 'none';
+            }, 1000);
+
+            if (questionSource[questionNumber].answer == event.target.value) {
+                checkLine.textContent = "Correct!";
+                totalScore++;
+            } else {
+                secondsLeft -= 10;
+                checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionNumber].answer + ".";
+            }
+
+            if (questionNumber < questionSource.length - 1) {
+                questionNumber++;
+                showQuestion(questionNumber);
+            } else {
+                gameOver();
+            }
+        }
+
+        function gameOver() {
+            clearInterval(timerInterval);
+            questionPage.style.display = "none";
+            scoreBoard.style.display = "block";
+            finalScore.textContent = "Your final score is: " + totalScore + " out of " + questionSource.length;
+        }
+
+        function saveScore() {
+            var scoreItem = {
+                user: userInitial.value,
+                score: totalScore
+            };
+            addItem(scoreItem);
+            renderScore();
+        }
+
+        function getScore() {
+            var currentList = localStorage.getItem("ScoreList");
+            if (currentList !== null) {
+                return JSON.parse(currentList);
+            } else {
+                return [];
+            }
+        }
+
+        function addItem(n) {
+            var addedList = getScore();
+            addedList.push(n);
+            localStorage.setItem("ScoreList", JSON.stringify(addedList));
+        }
+
+        function renderScore() {
+            scoreRecord.innerHTML = "";
+            var highScores = sort();
+            var topFive = highScores.slice(0, 5);
+            topFive.forEach((item, index) => {
+                var li = document.createElement("li");
+                li.textContent = item.user + " - " + item.score;
+                li.setAttribute("data-index", index);
+                scoreRecord.appendChild(li);
+            });
+        }
+
+        function sort() {
+            var unsortedList = getScore();
+            return unsortedList.sort((a, b) => b.score - a.score);
+        }
+
+        startBtn.addEventListener("click", startQuiz);
+
+        reactButtons.forEach(function (click) {
+            click.addEventListener("click", checkAnswer);
+        });
+
+        submitBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            scoreBoard.style.display = "none";
+            highScorePage.style.display = "block";
+            saveScore();
+        });
+
+        scoreCheck.addEventListener("click", function (event) {
+            event.preventDefault();
+            scoreBoard.style.display = "none";
+            highScorePage.style.display = "block";
+            renderScore();
+        });
+
+        backBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            scoreBoard.style.display = "none";
+            welcome.style.display = "block";
+            location.reload();
+        });
+
+        clearBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            localStorage.clear();
+            renderScore();
+        });
+    </script>
 </body>
 </html>
