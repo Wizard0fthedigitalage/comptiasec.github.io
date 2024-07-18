@@ -7,8 +7,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
-        #question_page, #scoreBoard {
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        #question_page, #scoreBoard, #highscore_page {
             display: none;
         }
         #timer {
@@ -20,35 +35,42 @@
         }
         .choices button {
             display: block;
-            margin: 10px 0;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <div id="introduction">
-        <h1>Welcome to the CompTIA Sec+ Quiz!</h1>
-        <button id="start_button">Start Quiz</button>
-    </div>
-    <div id="question_page">
-        <div id="timer">Time left: 60:00</div>
-        <div id="ask_question" class="question"></div>
-        <div class="choices">
-            <button id="answer_btn1" class="choice"></button>
-            <button id="answer_btn2" class="choice"></button>
-            <button id="answer_btn3" class="choice"></button>
-            <button id="answer_btn4" class="choice"></button>
+    <div class="container">
+        <div id="introduction">
+            <h1>Welcome to the CompTIA Sec+ Quiz!</h1>
+            <button id="start_button">Start Quiz</button>
         </div>
-        <div id="check_line"></div>
-    </div>
-    <div id="scoreBoard">
-        <h2>Quiz Completed!</h2>
-        <div id="final_score"></div>
-        <input type="text" id="initial" placeholder="Enter your initials">
-        <button id="submit_btn">Submit Score</button>
-        <ul id="score_record"></ul>
-        <button id="score_check">Check High Scores</button>
-        <button id="back_btn">Go Back</button>
-        <button id="clear_btn">Clear Scores</button>
+        <div id="question_page">
+            <div id="timer">Time left: 60:00</div>
+            <div id="ask_question" class="question"></div>
+            <div class="choices">
+                <button id="answer_btn1" class="choice"></button>
+                <button id="answer_btn2" class="choice"></button>
+                <button id="answer_btn3" class="choice"></button>
+                <button id="answer_btn4" class="choice"></button>
+            </div>
+            <div id="check_line"></div>
+        </div>
+        <div id="scoreBoard">
+            <h2>Quiz Completed!</h2>
+            <div id="final_score"></div>
+            <input type="text" id="initial" placeholder="Enter your initials">
+            <button id="submit_btn">Submit Score</button>
+        </div>
+        <div id="highscore_page">
+            <h2>High Scores</h2>
+            <ul id="score_record"></ul>
+            <button id="score_check">Check High Scores</button>
+            <button id="back_btn">Go Back</button>
+            <button id="clear_btn">Clear Scores</button>
+        </div>
     </div>
     <script>
         var questionSource = [
@@ -81,6 +103,8 @@
         var backBtn = document.querySelector("#back_btn");
         var clearBtn = document.querySelector("#clear_btn");
         var timeLeft = document.getElementById("timer");
+        var highScorePage = document.querySelector("#highscore_page");
+        var finish = document.querySelector("#finish");
 
         var timerInterval;
         var secondsLeft = 3600; // 60 minutes
@@ -175,9 +199,8 @@
 
         function renderScore() {
             scoreRecord.innerHTML = "";
-            var highScores = sort();
-            var topFive = highScores.slice(0, 5);
-            topFive.forEach((item, index) => {
+            var highScores = getScore().sort((a, b) => b.score - a.score).slice(0, 5);
+            highScores.forEach((item, index) => {
                 var li = document.createElement("li");
                 li.textContent = item.user + " - " + item.score;
                 li.setAttribute("data-index", index);
@@ -185,38 +208,28 @@
             });
         }
 
-        function sort() {
-            var unsortedList = getScore();
-            return unsortedList.sort((a, b) => b.score - a.score);
-        }
-
         startBtn.addEventListener("click", startQuiz);
-
         reactButtons.forEach(function (click) {
             click.addEventListener("click", checkAnswer);
         });
-
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
             scoreBoard.style.display = "none";
             highScorePage.style.display = "block";
             saveScore();
         });
-
         scoreCheck.addEventListener("click", function (event) {
             event.preventDefault();
             scoreBoard.style.display = "none";
             highScorePage.style.display = "block";
             renderScore();
         });
-
         backBtn.addEventListener("click", function (event) {
             event.preventDefault();
             scoreBoard.style.display = "none";
             welcome.style.display = "block";
             location.reload();
         });
-
         clearBtn.addEventListener("click", function (event) {
             event.preventDefault();
             localStorage.clear();
