@@ -59,34 +59,102 @@
             <div id="check_line"></div>
         </div>
         <div id="scoreBoard">
-            <h2>Quiz Completed!</h2>
+            <h2>Exam Completed!</h2>
             <div id="final_score"></div>
             <input type="text" id="initial" placeholder="Enter your initials">
             <button id="submit_btn">Submit Score</button>
         </div>
         <div id="highscore_page">
-            <h2>High Scores</h2>
+            <h2>Exam Scores</h2>
             <ul id="score_record"></ul>
             <button id="score_check">Check Exam Scores</button>
             <button id="back_btn">Go Back</button>
-            <button id="clear_btn">Clear Scores</button>
+            <button id="clear_btn">Clear Exam Scores</button>
         </div>
     </div>
     <script>
         var questionSource = [
-            { question: "What is the primary goal of information security?", choices: ["a. Detecting Intrusions", "b. Logging Events", "c. Confidentiality, Integrity, Availability", "d. System Maintenance"], answer: "c" },
-            { question: "Commonly used data types DO NOT include:", choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"], answer: "c" },
-            { question: "How do you create a function in JavaScript?", choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"], answer: "b" },
-            { question: "How do you call a function named myFunction?", choices: ["a. call myFunction()", "b. call function myFunction()", "c. myFunction()", "d. call myFunction"], answer: "c" },
-            { question: "To see if two variables are equal in an if / else statement you would use ____.", choices: ["a. =", "b. ==", "c. 'equals'", "d. !="], answer: "b" },
-            { question: "The first index of an array is ____.", choices: ["a. 0", "b. 1", "c. 8", "d. any"], answer: "a" },
-            { question: "How to write an IF statement in JavaScript?", choices: ["a. if i == 5 then", "b. if i = 5 then", "c. if(i == 5)", "d. if i = 5"], answer: "c" },
-            { question: "Which event occurs when the user clicks on an HTML element?", choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"], answer: "a" },
-            { question: "Which protocol is used to secure HTTP connections?", choices: ["a. HTTP", "b. HTTPS", "c. FTP", "d. SSH"], answer: "b" },
-            { question: "Which of the following is a common hashing algorithm?", choices: ["a. SHA-256", "b. AES", "c. RSA", "d. SSL"], answer: "a" },
-            { question: "What does the principle of least privilege ensure?", choices: ["a. Maximum access to all users", "b. Minimal access necessary for users to perform their jobs", "c. Full access to all system administrators", "d. No access to external networks"], answer: "b" },
-            // Add more questions here to make a total of 120 unique questions
-        ];
+    { question: "Which protocol is used to secure HTTP connections?", choices: ["a. HTTP", "b. HTTPS", "c. FTP", "d. SSH"], answer: "b" },
+    { question: "Which of the following is a common hashing algorithm?", choices: ["a. SHA-256", "b. AES", "c. RSA", "d. SSL"], answer: "a" },
+    { question: "What does the principle of least privilege ensure?", choices: ["a. Maximum access to all users", "b. Minimal access necessary for users to perform their jobs", "c. Full access to all system administrators", "d. No access to external networks"], answer: "b" },
+    { question: "Which of the following is NOT a type of malware?", choices: ["a. Virus", "b. Worm", "c. Phishing", "d. Trojan"], answer: "c" },
+    { question: "Which encryption protocol is used to secure web traffic?", choices: ["a. SSL/TLS", "b. FTP", "c. SSH", "d. IPsec"], answer: "a" },
+    { question: "Which access control model uses roles to determine access permissions?", choices: ["a. MAC", "b. DAC", "c. RBAC", "d. ABAC"], answer: "c" },
+    { question: "What is the purpose of a firewall?", choices: ["a. To encrypt data", "b. To filter incoming and outgoing network traffic", "c. To scan for viruses", "d. To manage user accounts"], answer: "b" },
+    { question: "Which of the following is a characteristic of a strong password?", choices: ["a. Contains personal information", "b. Easy to remember", "c. Includes a mix of letters, numbers, and symbols", "d. Is short and simple"], answer: "c" },
+    { question: "What is multi-factor authentication (MFA)?", choices: ["a. Using multiple usernames", "b. Using a password and a security question", "c. Using two or more authentication methods", "d. Using an encrypted password"], answer: "c" },
+    { question: "What does a VPN do?", choices: ["a. Encrypts network traffic", "b. Provides unlimited internet access", "c. Blocks malware", "d. Scans for viruses"], answer: "a" },
+    { question: "What is the purpose of a DMZ in network security?", choices: ["a. To isolate servers from external threats", "b. To provide a secure remote access", "c. To encrypt data", "d. To block incoming traffic"], answer: "a" },
+    { question: "Which type of attack involves sending too much data to overflow a buffer?", choices: ["a. Phishing", "b. Man-in-the-middle", "c. Buffer overflow", "d. SQL injection"], answer: "c" },
+    { question: "What is a common method used to secure wireless networks?", choices: ["a. WPA2", "b. FTP", "c. Telnet", "d. HTTP"], answer: "a" },
+    { question: "What is the main function of an IDS?", choices: ["a. To detect and alert on potential intrusions", "b. To block unauthorized access", "c. To encrypt data", "d. To manage network traffic"], answer: "a" },
+    { question: "Which type of malware disguises itself as a legitimate program?", choices: ["a. Virus", "b. Worm", "c. Trojan", "d. Ransomware"], answer: "c" },
+    { question: "Which of the following is a social engineering attack?", choices: ["a. Phishing", "b. DDoS", "c. SQL injection", "d. Man-in-the-middle"], answer: "a" },
+    { question: "What does SSL/TLS use to secure data transmission?", choices: ["a. Hashing", "b. Encryption", "c. Compression", "d. Encoding"], answer: "b" },
+    { question: "What is the purpose of a honeypot in network security?", choices: ["a. To attract and analyze attacks", "b. To encrypt data", "c. To block malware", "d. To monitor network traffic"], answer: "a" },
+    { question: "What type of attack involves modifying a query to a database?", choices: ["a. Phishing", "b. SQL injection", "c. XSS", "d. Buffer overflow"], answer: "b" },
+    { question: "Which type of cryptographic algorithm uses a pair of keys?", choices: ["a. Symmetric", "b. Asymmetric", "c. Hashing", "d. Compression"], answer: "b" },
+    { question: "What does the CIA triad stand for in information security?", choices: ["a. Confidentiality, Integrity, Availability", "b. Confidentiality, Information, Access", "c. Control, Integrity, Access", "d. Control, Information, Availability"], answer: "a" },
+    { question: "What is the function of a digital certificate?", choices: ["a. To encrypt data", "b. To verify the identity of a user or device", "c. To block malware", "d. To manage user accounts"], answer: "b" },
+    { question: "What is the purpose of network segmentation?", choices: ["a. To encrypt data", "b. To isolate different parts of the network", "c. To manage user access", "d. To block malware"], answer: "b" },
+    { question: "What does the term 'zero-day' refer to?", choices: ["a. An unknown vulnerability", "b. A type of malware", "c. A social engineering attack", "d. A cryptographic algorithm"], answer: "a" },
+    { question: "What is the primary function of an antivirus program?", choices: ["a. To encrypt data", "b. To detect and remove malware", "c. To manage user access", "d. To monitor network traffic"], answer: "b" },
+    { question: "Which type of attack exploits a vulnerability before it is patched?", choices: ["a. Phishing", "b. Zero-day attack", "c. Man-in-the-middle", "d. SQL injection"], answer: "b" },
+    { question: "What is a botnet?", choices: ["a. A network of infected computers", "b. A type of firewall", "c. A cryptographic algorithm", "d. A form of social engineering"], answer: "a" },
+    { question: "Which type of cryptographic algorithm uses the same key for encryption and decryption?", choices: ["a. Symmetric", "b. Asymmetric", "c. Hashing", "d. Compression"], answer: "a" },
+    { question: "What is the purpose of a digital signature?", choices: ["a. To encrypt data", "b. To verify the integrity and authenticity of a message", "c. To manage user access", "d. To monitor network traffic"], answer: "b" },
+    { question: "What is the main function of a VPN?", choices: ["a. To provide secure remote access", "b. To block malware", "c. To monitor network traffic", "d. To manage user accounts"], answer: "a" },
+    { question: "Which type of attack involves overwhelming a system with traffic?", choices: ["a. Phishing", "b. DDoS", "c. Man-in-the-middle", "d. SQL injection"], answer: "b" },
+    { question: "What does the term 'phishing' refer to?", choices: ["a. A type of malware", "b. An attempt to obtain sensitive information by disguising as a trustworthy entity", "c. A cryptographic algorithm", "d. A form of encryption"], answer: "b" },
+    { question: "What is a hypervisor?", choices: ["a. A type of malware", "b. Software that creates and runs virtual machines", "c. A hardware component", "d. A type of network protocol"], answer: "b" },
+    { question: "What is the purpose of a load balancer?", choices: ["a. To distribute network or application traffic across multiple servers", "b. To provide data encryption", "c. To monitor network traffic", "d. To manage user accounts"], answer: "a" },
+    { question: "What is a common characteristic of spyware?", choices: ["a. It encrypts data", "b. It monitors user activity and collects information without their knowledge", "c. It blocks network traffic", "d. It manages user access"], answer: "b" },
+    { question: "What is the main purpose of a security audit?", choices: ["a. To encrypt data", "b. To assess the effectiveness of security controls", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "Which of the following is NOT a common security framework?", choices: ["a. NIST", "b. ISO 27001", "c. COBIT", "d. HTTP"], answer: "d" },
+    { question: "What does the term 'data breach' refer to?", choices: ["a. The loss or theft of data", "b. The encryption of data", "c. The compression of data", "d. The backup of data"], answer: "a" },
+    { question: "What is the purpose of a security policy?", choices: ["a. To encrypt data", "b. To establish guidelines and rules for security practices", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "Which of the following is a type of social engineering?", choices: ["a. Phishing", "b. DDoS", "c. SQL injection", "d. Buffer overflow"], answer: "a" },
+    { question: "What is the main purpose of encryption?", choices: ["a. To hide data from unauthorized access", "b. To block malware", "c. To manage user access", "d. To monitor network traffic"], answer: "a" },
+    { question: "What does the term 'authentication' refer to?", choices: ["a. The process of verifying the identity of a user or device", "b. The process of encrypting data", "c. The process of blocking malware", "d. The process of managing user access"], answer: "a" },
+    { question: "What is the main function of a firewall?", choices: ["a. To block unauthorized access to or from a network", "b. To encrypt data", "c. To monitor network traffic", "d. To manage user accounts"], answer: "a" },
+    { question: "What is a common method used to secure email communication?", choices: ["a. SSL/TLS", "b. FTP", "c. HTTP", "d. Telnet"], answer: "a" },
+    { question: "What is the primary purpose of a security incident response plan?", choices: ["a. To detect intrusions", "b. To provide guidelines for responding to security incidents", "c. To encrypt data", "d. To block malware"], answer: "b" },
+    { question: "What does the term 'least privilege' refer to?", choices: ["a. Giving users the minimum level of access necessary to perform their jobs", "b. Providing full access to all users", "c. Blocking all unauthorized access", "d. Encrypting all data"], answer: "a" },
+    { question: "Which of the following is NOT a component of the CIA triad?", choices: ["a. Confidentiality", "b. Integrity", "c. Availability", "d. Authentication"], answer: "d" },
+    { question: "What is the primary function of a security operations center (SOC)?", choices: ["a. To manage user accounts", "b. To monitor and respond to security incidents", "c. To encrypt data", "d. To block malware"], answer: "b" },
+    { question: "What is a common method used to secure web applications?", choices: ["a. SSL/TLS", "b. FTP", "c. HTTP", "d. Telnet"], answer: "a" },
+    { question: "Which of the following is a type of physical security control?", choices: ["a. Firewall", "b. Encryption", "c. Security camera", "d. Antivirus software"], answer: "c" },
+    { question: "What does the term 'vulnerability' refer to?", choices: ["a. A weakness that can be exploited by a threat", "b. A method of encryption", "c. A type of malware", "d. A security control"], answer: "a" },
+    { question: "What is the main purpose of a penetration test?", choices: ["a. To encrypt data", "b. To identify and exploit vulnerabilities in a system", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "What is a common use of a public key infrastructure (PKI)?", choices: ["a. To encrypt data", "b. To manage digital certificates", "c. To block malware", "d. To monitor network traffic"], answer: "b" },
+    { question: "Which of the following is a common method of biometric authentication?", choices: ["a. Password", "b. Fingerprint", "c. PIN", "d. Security question"], answer: "b" },
+    { question: "What is the primary purpose of a disaster recovery plan?", choices: ["a. To encrypt data", "b. To ensure the continuity of operations in the event of a disaster", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "What is the main purpose of a security awareness training program?", choices: ["a. To encrypt data", "b. To educate employees about security policies and best practices", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "Which of the following is a common method used to secure a network?", choices: ["a. SSL/TLS", "b. FTP", "c. HTTP", "d. Firewalls"], answer: "d" },
+    { question: "What does the term 'integrity' refer to in information security?", choices: ["a. The accuracy and completeness of data", "b. The availability of data", "c. The confidentiality of data", "d. The encryption of data"], answer: "a" },
+    { question: "What is a common method used to protect against malware?", choices: ["a. Encryption", "b. Firewalls", "c. Antivirus software", "d. Biometric authentication"], answer: "c" },
+    { question: "What is the purpose of a security audit?", choices: ["a. To encrypt data", "b. To assess the effectiveness of security controls", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "Which of the following is NOT a common type of firewall?", choices: ["a. Packet-filtering firewall", "b. Stateful inspection firewall", "c. Proxy firewall", "d. SQL firewall"], answer: "d" },
+    { question: "What does the term 'availability' refer to in the context of the CIA triad?", choices: ["a. Ensuring data is accessible when needed", "b. Ensuring data is accurate and complete", "c. Ensuring data is kept confidential", "d. Ensuring data is encrypted"], answer: "a" },
+    { question: "What is a common method used to secure wireless networks?", choices: ["a. WPA2", "b. FTP", "c. Telnet", "d. HTTP"], answer: "a" },
+    { question: "Which of the following is NOT a type of intrusion detection system (IDS)?", choices: ["a. Network-based IDS", "b. Host-based IDS", "c. Application-based IDS", "d. File-based IDS"], answer: "d" },
+    { question: "What is the purpose of a digital certificate?", choices: ["a. To encrypt data", "b. To verify the identity of a user or device", "c. To block malware", "d. To manage user accounts"], answer: "b" },
+    { question: "What does the term 'least privilege' refer to?", choices: ["a. Giving users the minimum level of access necessary to perform their jobs", "b. Providing full access to all users", "c. Blocking all unauthorized access", "d. Encrypting all data"], answer: "a" },
+    { question: "Which of the following is NOT a component of the CIA triad?", choices: ["a. Confidentiality", "b. Integrity", "c. Availability", "d. Authentication"], answer: "d" },
+    { question: "What is the primary function of a security operations center (SOC)?", choices: ["a. To manage user accounts", "b. To monitor and respond to security incidents", "c. To encrypt data", "d. To block malware"], answer: "b" },
+    { question: "Which of the following is a common method used to secure web applications?", choices: ["a. SSL/TLS", "b. FTP", "c. HTTP", "d. Telnet"], answer: "a" },
+    { question: "Which of the following is a type of physical security control?", choices: ["a. Firewall", "b. Encryption", "c. Security camera", "d. Antivirus software"], answer: "c" },
+    { question: "What does the term 'vulnerability' refer to?", choices: ["a. A weakness that can be exploited by a threat", "b. A method of encryption", "c. A type of malware", "d. A security control"], answer: "a" },
+    { question: "What is the main purpose of a penetration test?", choices: ["a. To encrypt data", "b. To identify and exploit vulnerabilities in a system", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "What is a common use of a public key infrastructure (PKI)?", choices: ["a. To encrypt data", "b. To manage digital certificates", "c. To block malware", "d. To monitor network traffic"], answer: "b" },
+    { question: "Which of the following is a common method of biometric authentication?", choices: ["a. Password", "b. Fingerprint", "c. PIN", "d. Security question"], answer: "b" },
+    { question: "What is the primary purpose of a disaster recovery plan?", choices: ["a. To encrypt data", "b. To ensure the continuity of operations in the event of a disaster", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "What is the main purpose of a security awareness training program?", choices: ["a. To encrypt data", "b. To educate employees about security policies and best practices", "c. To block malware", "d. To manage user access"], answer: "b" },
+    { question: "Which of the following is a common method used to secure a network?", choices: ["a. SSL/TLS", "b. FTP", "c. HTTP", "d. Firewalls"], answer: "d" },
+    { question: "What does the term 'integrity' refer to in information security?", choices: ["a. The accuracy and completeness of data", "b. The availability of data", "c. The confidentiality of data", "d. The encryption of data"], answer: "a" },
+    { question: "What is a common method used to protect against malware?", choices: ["a. Encryption", "b. Firewalls", "c. Antivirus software", "d. Biometric authentication"], answer: "c" }
+];
+
 
         var welcome = document.querySelector("#introduction");
         var startBtn = document.querySelector("#start_button");
