@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Sec+ Quiz</title>
+    <title>CompTIA SEC+ EXAM SIMULATOR</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,8 +44,8 @@
 <body>
     <div class="container">
         <div id="introduction">
-            <h1>Welcome to the CompTIA Sec+ Quiz!</h1>
-            <button id="start_button">Start Quiz</button>
+            <h1>Welcome to the CompTIA SEC+ EXAM SIMULATOR</h1>
+            <button id="start_button">START EXAM</button>
         </div>
         <div id="question_page">
             <div id="timer">Time left: 60:00</div>
@@ -67,7 +67,7 @@
         <div id="highscore_page">
             <h2>High Scores</h2>
             <ul id="score_record"></ul>
-            <button id="score_check">Check High Scores</button>
+            <button id="score_check">Check Exam Scores</button>
             <button id="back_btn">Go Back</button>
             <button id="clear_btn">Clear Scores</button>
         </div>
@@ -107,7 +107,7 @@
         var finish = document.querySelector("#finish");
 
         var timerInterval;
-        var secondsLeft = 3600; // 60 minutes
+        var secondsLeft = 2400; // 40 minutes
         var questionNumber = 0;
         var totalScore = 0;
 
