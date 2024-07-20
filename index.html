@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Sec+ Quiz</title>
+    <title>CompTIA Sec+ Exam 76 test Questions total of 152</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,11 +44,11 @@
 <body>
     <div class="container">
         <div id="introduction">
-            <h1>Welcome to the CompTIA Sec+ Quiz!</h1>
+            <h1>Welcome to the CompTIA Sec+ Exam!</h1>
             <button id="start_button">Start Quiz</button>
         </div>
         <div id="question_page">
-            <div id="timer">Time left: 60:00</div>
+            <div id="timer">Time left: 30:00</div>
             <div id="ask_question" class="question"></div>
             <div class="choices">
                 <button id="answer_btn1" class="choice"></button>
@@ -59,7 +59,7 @@
             <div id="check_line"></div>
         </div>
         <div id="scoreBoard">
-            <h2>Quiz Completed!</h2>
+            <h2>Exam Completed!</h2>
             <div id="final_score"></div>
             <input type="text" id="initial" placeholder="Enter your initials">
             <button id="submit_btn">Submit Score</button>
@@ -67,7 +67,7 @@
         <div id="highscore_page">
             <h2>High Scores</h2>
             <ul id="score_record"></ul>
-            <button id="score_check">Check High Scores</button>
+            <button id="score_check">Check Exam Scores</button>
             <button id="back_btn">Go Back</button>
             <button id="clear_btn">Clear Scores</button>
         </div>
@@ -172,7 +172,7 @@
         var finish = document.querySelector("#finish");
 
         var timerInterval;
-        var secondsLeft = 3600; // 60 minutes
+        var secondsLeft = 2400; // 60 minutes
         var questionNumber = 0;
         var totalScore = 0;
 
